@@ -86,6 +86,5 @@ const applyPagination = initPagination(
 
 const appRoot = document.querySelector('#app');
 appRoot.appendChild(sampleTable.container);
-
 render();
 
