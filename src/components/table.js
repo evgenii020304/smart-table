@@ -7,13 +7,13 @@ import {cloneTemplate} from "../lib/utils.js";
  * @param {(action: HTMLButtonElement | undefined) => void} onAction
  * @returns {{container: Node, elements: *, render: render}}
  */
+
 export function initTable(settings, onAction) {
     const {tableTemplate, rowTemplate, before, after} = settings;
     const root = cloneTemplate(tableTemplate);
 
-
-    // @todo: #1.2 —  вывести дополнительные шаблоны до и после таблицы
-    before.slice().reverse().forEach(subName => {
+    // @todo: #1.2 — вывести дополнительные шаблоны до и после таблицы
+    before.reverse().forEach(subName => {
         root[subName] = cloneTemplate(subName);
         root.container.prepend(root[subName].container);
     });

@@ -14,7 +14,7 @@ export function initFiltering(elements) {
         // код с обработкой очистки поля
         if (action && action.name === 'clear') {
             const field = action.dataset.field;
-            const parent = action.closest('.filter-field');
+            const parent = action.parentElement;
             const input = parent.querySelector('input, select');
 
             if (input) {
@@ -27,13 +27,13 @@ export function initFiltering(elements) {
         const filter = {};
         Object.keys(elements).forEach(key => {
             if (elements[key]) {
-                if (['INPUT', 'SELECT'].includes(elements[key].tagName) && elements[key].value) { // ищем поля ввода в фильтре с непустыми данными
-                    filter[`filter[${elements[key].name}]`] = elements[key].value; // чтобы сформировать в query вложенный объект фильтра
+                if (['INPUT', 'SELECT'].includes(elements[key].tagName) && elements[key].value) {
+                    filter[`filter[${elements[key].name}]`] = elements[key].value;
                 }
             }
         })
 
-        return Object.keys(filter).length ? Object.assign({}, query, filter) : query; // если в фильтре что-то добавилось, применим к запросу
+        return Object.keys(filter).length ? Object.assign({}, query, filter) : query;
     }
 
     return {
